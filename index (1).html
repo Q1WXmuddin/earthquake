@@ -1,0 +1,819 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   SEIS-ALERT - Earthquake Sensor App
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Scrollbar for reports */
+    .scrollbar-thin::-webkit-scrollbar {
+      height: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #b45309; /* gold/brown */
+      border-radius: 3px;
+    }
+  </style>
+ </head>
+ <body class="bg-black text-gray-100 min-h-screen flex flex-col">
+  <!-- Header / Navbar -->
+  <header class="bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 shadow-lg sticky top-0 z-50">
+   <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+     <img alt="SEIS-ALERT logo with gold, red and orange colors, stylized seismic wave icon" class="w-12 h-12" draggable="false" height="48" src="https://storage.googleapis.com/a1aa/image/55d95257-af50-4d5d-2473-cda36ec60dab.jpg" width="48"/>
+     <h1 class="text-3xl font-extrabold text-yellow-400 select-none">
+      SEIS-ALERT
+     </h1>
+    </div>
+    <!-- Navigation -->
+    <nav class="hidden md:flex space-x-6 font-semibold text-black">
+     <button class="hover:text-yellow-400 transition" id="btn-home">
+      Home
+     </button>
+     <button class="hover:text-yellow-400 transition" id="btn-scale">
+      Earthquake Scale
+     </button>
+     <button class="hover:text-yellow-400 transition" id="btn-reports">
+      Global Reports
+     </button>
+     <button class="hover:text-yellow-400 transition" id="btn-resources">
+      Resource Radar
+     </button>
+     <button class="hover:text-yellow-400 transition" id="btn-instructions">
+      Instructions
+     </button>
+     <button class="hover:text-yellow-400 transition" id="btn-settings">
+      Settings
+     </button>
+    </nav>
+    <!-- Mobile menu button -->
+    <button class="md:hidden text-black focus:outline-none" id="mobile-menu-btn">
+     <i class="fas fa-bars fa-lg">
+     </i>
+    </button>
+   </div>
+   <!-- Mobile menu -->
+   <nav class="hidden flex-col bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 p-4 space-y-3 md:hidden font-semibold text-black" id="mobile-menu">
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-home">
+     Home
+    </button>
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-scale">
+     Earthquake Scale
+    </button>
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-reports">
+     Global Reports
+    </button>
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-resources">
+     Resource Radar
+    </button>
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-instructions">
+     Instructions
+    </button>
+    <button class="text-left hover:text-yellow-400 transition" id="m-btn-settings">
+     Settings
+    </button>
+   </nav>
+  </header>
+  <!-- Main content container -->
+  <main class="flex-grow max-w-7xl mx-auto p-4 space-y-8">
+   <!-- Home Section -->
+   <section class="space-y-6" id="section-home">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Welcome to SEIS-ALERT
+    </h2>
+    <p class="text-center max-w-3xl mx-auto text-lg text-gray-300">
+     Your global earthquake sensor app that uses real-time data and user reports to detect earthquakes quickly and keep you safe.
+    </p>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+     <img alt="Realistic real-time seismic activity map showing earthquake epicenters globally with red and orange highlights" class="rounded-lg shadow-lg max-w-full md:max-w-xl" draggable="false" height="400" src="https://storage.googleapis.com/a1aa/image/5a5c87e3-be04-4568-1060-64023a8267a5.jpg" width="600"/>
+     <div class="max-w-md space-y-4 text-gray-200">
+      <p>
+       SEIS-ALERT uses your smartphone's sensors and user reports to detect earthquakes faster than traditional methods.
+      </p>
+      <p>
+       Set alerts for up to 20 locations worldwide, customize magnitude thresholds, and receive detailed depth information.
+      </p>
+      <p>
+       After an earthquake, access our Resource Radar to find nearby shelters, food, water, power, and first aid locations updated by users.
+      </p>
+      <p>
+       Stay informed with daily summaries, widgets, and share updates easily via SMS, email, or social media.
+      </p>
+     </div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center gap-6 mt-6">
+     <a aria-label="Download SEIS-ALERT on the App Store" class="flex items-center justify-center gap-3 bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-lg px-6 py-3 shadow-lg hover:scale-105 transition" href="https://apps.apple.com/app/id0000000000" target="_blank">
+      <i class="fab fa-apple fa-2x">
+      </i>
+      Download on the App Store
+     </a>
+     <a aria-label="Download SEIS-ALERT on Google Play Store" class="flex items-center justify-center gap-3 bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-lg px-6 py-3 shadow-lg hover:scale-105 transition" href="https://play.google.com/store/apps/details?id=com.seisalert.app" target="_blank">
+      <i class="fab fa-google-play fa-2x">
+      </i>
+      Download on Google Play
+     </a>
+    </div>
+    <div class="mt-8 flex flex-col items-center space-y-2">
+     <p class="text-yellow-400 font-semibold">
+      Or scan QR code to download:
+     </p>
+     <img alt="QR code in orange and red colors to download SEIS-ALERT app from App Store and Google Play" class="w-36 h-36" draggable="false" height="150" src="" width="150"/>
+    </div>
+   </section>
+   <!-- Earthquake Scale Section -->
+   <section class="hidden space-y-6" id="section-scale">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Earthquake Magnitude Scale
+    </h2>
+    <p class="text-center max-w-3xl mx-auto text-gray-300">
+     Understand the magnitude of earthquakes and their potential impact.
+    </p>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+     <div class="bg-gradient-to-r from-orange-500 to-red-600 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Micro (Less than 2.0)
+      </h3>
+      <p>
+       Generally not felt, but recorded by seismographs.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-red-600 to-orange-700 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Minor (2.0 - 3.9)
+      </h3>
+      <p>
+       Often felt, but rarely causes damage.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-orange-700 to-red-800 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Light (4.0 - 4.9)
+      </h3>
+      <p>
+       Noticeable shaking of indoor items, rattling noises, but significant damage unlikely.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-red-800 to-orange-900 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Moderate (5.0 - 5.9)
+      </h3>
+      <p>
+       Can cause damage to poorly constructed buildings and slight damage to well-built ones.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-orange-900 to-red-900 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Strong (6.0 - 6.9)
+      </h3>
+      <p>
+       May cause a lot of damage in populated areas.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-red-900 to-orange-800 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Major (7.0 - 7.9)
+      </h3>
+      <p>
+       Serious damage over larger areas.
+      </p>
+     </div>
+     <div class="bg-gradient-to-r from-orange-800 to-red-700 rounded-lg p-6 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2">
+       Great (8.0 and higher)
+      </h3>
+      <p>
+       Can cause serious damage in areas several hundred kilometers across.
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- Global Reports Section -->
+   <section class="hidden space-y-6" id="section-reports">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Global Earthquake Reports
+    </h2>
+    <p class="text-center max-w-3xl mx-auto text-gray-300">
+     Real-time earthquake reports from international and national seismic agencies.
+    </p>
+    <div class="overflow-x-auto scrollbar-thin">
+     <table class="min-w-full bg-black border border-gray-700 rounded-lg overflow-hidden">
+      <thead class="bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 text-black">
+       <tr>
+        <th class="py-3 px-4 text-left">
+         Date &amp; Time (UTC)
+        </th>
+        <th class="py-3 px-4 text-left">
+         Location
+        </th>
+        <th class="py-3 px-4 text-left">
+         Magnitude
+        </th>
+        <th class="py-3 px-4 text-left">
+         Depth (km)
+        </th>
+        <th class="py-3 px-4 text-left">
+         Details
+        </th>
+       </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-700" id="reports-table-body">
+       <!-- Filled dynamically -->
+      </tbody>
+     </table>
+    </div>
+    <div class="mt-4 flex justify-center">
+     <button class="bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-lg px-6 py-3 shadow-lg hover:scale-105 transition" id="btn-refresh-reports">
+      Refresh Reports
+     </button>
+    </div>
+   </section>
+   <!-- Resource Radar Section -->
+   <section class="hidden space-y-6" id="section-resources">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Resource Radar
+    </h2>
+    <p class="text-center max-w-3xl mx-auto text-gray-300">
+     Find real-time, user-updated info on local resources after an earthquake.
+    </p>
+    <div class="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto">
+     <div class="flex-1 bg-gradient-to-r from-yellow-400 to-orange-600 rounded-lg p-4 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+       <i class="fas fa-utensils text-orange-700">
+       </i>
+       Food
+      </h3>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto text-gray-900" id="resource-food">
+      </ul>
+     </div>
+     <div class="flex-1 bg-gradient-to-r from-blue-400 to-blue-700 rounded-lg p-4 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+       <i class="fas fa-tint text-blue-900">
+       </i>
+       Water
+      </h3>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto text-gray-900" id="resource-water">
+      </ul>
+     </div>
+     <div class="flex-1 bg-gradient-to-r from-yellow-300 to-yellow-600 rounded-lg p-4 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+       <i class="fas fa-bolt text-yellow-800">
+       </i>
+       Power
+      </h3>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto text-gray-900" id="resource-power">
+      </ul>
+     </div>
+    </div>
+    <div class="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto mt-4">
+     <div class="flex-1 bg-gradient-to-r from-red-600 to-red-800 rounded-lg p-4 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+       <i class="fas fa-first-aid text-red-900">
+       </i>
+       First Aid
+      </h3>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto text-gray-900" id="resource-firstaid">
+      </ul>
+     </div>
+     <div class="flex-1 bg-gradient-to-r from-yellow-700 to-yellow-900 rounded-lg p-4 shadow-lg text-black">
+      <h3 class="text-2xl font-bold mb-2 flex items-center gap-2">
+       <i class="fas fa-home text-brown-900" style="color:#5C4033;">
+       </i>
+       Shelter
+      </h3>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto text-gray-900" id="resource-shelter">
+      </ul>
+     </div>
+    </div>
+    <div class="mt-6 flex justify-center">
+     <button class="bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-lg px-6 py-3 shadow-lg hover:scale-105 transition" id="btn-refresh-resources">
+      Refresh Resource Radar
+     </button>
+    </div>
+   </section>
+   <!-- Instructions Section -->
+   <section class="hidden max-w-4xl mx-auto space-y-6" id="section-instructions">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Earthquake Safety Instructions
+    </h2>
+    <div class="space-y-4 text-gray-300">
+     <article>
+      <h3 class="text-2xl font-bold text-orange-400 mb-2">
+       Before an Earthquake
+      </h3>
+      <ul class="list-disc list-inside space-y-1">
+       <li>
+        Secure heavy items and furniture to walls.
+       </li>
+       <li>
+        Prepare an emergency kit with food, water, and first aid supplies.
+       </li>
+       <li>
+        Identify safe spots in each room, such as under sturdy tables.
+       </li>
+       <li>
+        Make a family emergency communication plan.
+       </li>
+      </ul>
+     </article>
+     <article>
+      <h3 class="text-2xl font-bold text-red-400 mb-2">
+       During an Earthquake
+      </h3>
+      <ul class="list-disc list-inside space-y-1">
+       <li>
+        Drop, Cover, and Hold On: Get under a sturdy table or cover your head and neck.
+       </li>
+       <li>
+        Stay indoors until shaking stops.
+       </li>
+       <li>
+        Stay away from windows, glass, and heavy objects.
+       </li>
+       <li>
+        If outside, move to an open area away from buildings and power lines.
+       </li>
+      </ul>
+     </article>
+     <article>
+      <h3 class="text-2xl font-bold text-yellow-400 mb-2">
+       After an Earthquake
+      </h3>
+      <ul class="list-disc list-inside space-y-1">
+       <li>
+        Check yourself and others for injuries.
+       </li>
+       <li>
+        Expect aftershocks and be prepared to drop, cover, and hold on again.
+       </li>
+       <li>
+        Use Resource Radar to find nearby shelters, food, water, power, and first aid.
+       </li>
+       <li>
+        Follow official updates and instructions from authorities.
+       </li>
+      </ul>
+     </article>
+    </div>
+   </section>
+   <!-- Settings Section -->
+   <section class="hidden max-w-3xl mx-auto space-y-6" id="section-settings">
+    <h2 class="text-4xl font-extrabold text-yellow-400 text-center">
+     Settings
+    </h2>
+    <form class="space-y-6 bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 p-6 rounded-lg shadow-lg text-black" id="settings-form">
+     <div>
+      <label class="block font-semibold mb-2" for="location-input">
+       Set Your Location
+      </label>
+      <input class="w-full rounded-md p-3 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" id="location-input" name="location" placeholder="Enter city, region, or coordinates" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block font-semibold mb-2" for="magnitude-threshold">
+       Magnitude Alert Threshold
+      </label>
+      <select class="w-full rounded-md p-3 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" id="magnitude-threshold" name="magnitudeThreshold">
+       <option value="2">
+        2.0+
+       </option>
+       <option value="3">
+        3.0+
+       </option>
+       <option selected="" value="4">
+        4.0+
+       </option>
+       <option value="5">
+        5.0+
+       </option>
+       <option value="6">
+        6.0+
+       </option>
+      </select>
+     </div>
+     <div>
+      <label class="block font-semibold mb-2" for="locations-list">
+       Manage Alert Locations (up to 20)
+      </label>
+      <div class="flex gap-2 mb-2">
+       <input class="flex-grow rounded-md p-2 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" id="new-location-input" placeholder="Add new location" type="text"/>
+       <button class="bg-yellow-400 text-black font-bold px-4 rounded-md hover:bg-yellow-500 transition" id="btn-add-location" type="button">
+        Add
+       </button>
+      </div>
+      <ul class="list-disc list-inside max-h-48 overflow-y-auto bg-white rounded-md p-3 text-black" id="locations-list">
+      </ul>
+     </div>
+     <div class="flex justify-center">
+      <button class="bg-black text-yellow-400 font-bold rounded-lg px-8 py-3 shadow-lg hover:scale-105 transition" type="submit">
+       Save Settings
+      </button>
+     </div>
+    </form>
+   </section>
+   <!-- Earthquake Depth Info Modal -->
+   <div class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 hidden z-50" id="depth-info-modal">
+    <div class="bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 rounded-lg max-w-lg w-full p-6 relative shadow-lg text-black">
+     <button aria-label="Close depth information modal" class="absolute top-3 right-3 text-black hover:text-gray-700 focus:outline-none" id="depth-info-close">
+      <i class="fas fa-times fa-lg">
+      </i>
+     </button>
+     <h3 class="text-3xl font-extrabold mb-4">
+      Earthquake Depth Information
+     </h3>
+     <p class="text-lg leading-relaxed" id="depth-info-content">
+     </p>
+    </div>
+   </div>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-orange-600 via-red-700 to-yellow-500 text-black p-6 mt-auto">
+   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+    <p class="font-semibold">
+     © 2024 SEIS-ALERT. All rights reserved.
+    </p>
+    <p>
+     Visit our website:
+     <a class="underline hover:text-yellow-400" href="https://www.seis-alert.com" target="_blank">
+      www.seis-alert.com
+     </a>
+    </p>
+    <div class="flex space-x-4 text-black">
+     <a aria-label="SEIS-ALERT Twitter" class="hover:text-yellow-400" href="https://twitter.com/seisalert" target="_blank">
+      <i class="fab fa-twitter fa-lg">
+      </i>
+     </a>
+     <a aria-label="SEIS-ALERT Facebook" class="hover:text-yellow-400" href="https://facebook.com/seisalert" target="_blank">
+      <i class="fab fa-facebook fa-lg">
+      </i>
+     </a>
+     <a aria-label="SEIS-ALERT Instagram" class="hover:text-yellow-400" href="https://instagram.com/seisalert" target="_blank">
+      <i class="fab fa-instagram fa-lg">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Navigation buttons
+    const sections = {
+      home: document.getElementById('section-home'),
+      scale: document.getElementById('section-scale'),
+      reports: document.getElementById('section-reports'),
+      resources: document.getElementById('section-resources'),
+      instructions: document.getElementById('section-instructions'),
+      settings: document.getElementById('section-settings'),
+    };
+
+    function showSection(sectionKey) {
+      Object.entries(sections).forEach(([key, el]) => {
+        if (key === sectionKey) {
+          el.classList.remove('hidden');
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+      }
+    }
+
+    // Desktop nav buttons
+    document.getElementById('btn-home').addEventListener('click', () => showSection('home'));
+    document.getElementById('btn-scale').addEventListener('click', () => showSection('scale'));
+    document.getElementById('btn-reports').addEventListener('click', () => {
+      showSection('reports');
+      loadReports();
+    });
+    document.getElementById('btn-resources').addEventListener('click', () => {
+      showSection('resources');
+      loadResources();
+    });
+    document.getElementById('btn-instructions').addEventListener('click', () => showSection('instructions'));
+    document.getElementById('btn-settings').addEventListener('click', () => showSection('settings'));
+
+    // Mobile nav buttons
+    document.getElementById('m-btn-home').addEventListener('click', () => showSection('home'));
+    document.getElementById('m-btn-scale').addEventListener('click', () => showSection('scale'));
+    document.getElementById('m-btn-reports').addEventListener('click', () => {
+      showSection('reports');
+      loadReports();
+    });
+    document.getElementById('m-btn-resources').addEventListener('click', () => {
+      showSection('resources');
+      loadResources();
+    });
+    document.getElementById('m-btn-instructions').addEventListener('click', () => showSection('instructions'));
+    document.getElementById('m-btn-settings').addEventListener('click', () => showSection('settings'));
+
+    // Initial section
+    showSection('home');
+
+    // Settings form and locations management
+    const locationsListEl = document.getElementById('locations-list');
+    const newLocationInput = document.getElementById('new-location-input');
+    const btnAddLocation = document.getElementById('btn-add-location');
+    const settingsForm = document.getElementById('settings-form');
+    const locationInput = document.getElementById('location-input');
+    const magnitudeThresholdSelect = document.getElementById('magnitude-threshold');
+
+    let alertLocations = [];
+
+    function renderLocations() {
+      locationsListEl.innerHTML = '';
+      alertLocations.forEach((loc, idx) => {
+        const li = document.createElement('li');
+        li.className = 'flex justify-between items-center';
+        li.textContent = loc;
+        const btnRemove = document.createElement('button');
+        btnRemove.textContent = 'Remove';
+        btnRemove.className = 'ml-4 text-red-600 font-semibold hover:text-red-800';
+        btnRemove.addEventListener('click', () => {
+          alertLocations.splice(idx, 1);
+          renderLocations();
+        });
+        li.appendChild(btnRemove);
+        locationsListEl.appendChild(li);
+      });
+    }
+
+    btnAddLocation.addEventListener('click', () => {
+      const val = newLocationInput.value.trim();
+      if (val && alertLocations.length < 20 && !alertLocations.includes(val)) {
+        alertLocations.push(val);
+        newLocationInput.value = '';
+        renderLocations();
+      } else if (alertLocations.length >= 20) {
+        alert('You can add up to 20 locations only.');
+      }
+    });
+
+    settingsForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userLocation = locationInput.value.trim();
+      const magnitudeThreshold = magnitudeThresholdSelect.value;
+      if (!userLocation) {
+        alert('Please enter your location.');
+        return;
+      }
+      // Save settings to localStorage
+      localStorage.setItem('seisalert_userLocation', userLocation);
+      localStorage.setItem('seisalert_magnitudeThreshold', magnitudeThreshold);
+      localStorage.setItem('seisalert_alertLocations', JSON.stringify(alertLocations));
+      alert('Settings saved successfully!');
+    });
+
+    // Load saved settings on page load
+    window.addEventListener('load', () => {
+      const savedLocation = localStorage.getItem('seisalert_userLocation');
+      const savedMagnitude = localStorage.getItem('seisalert_magnitudeThreshold');
+      const savedAlertLocations = localStorage.getItem('seisalert_alertLocations');
+      if (savedLocation) locationInput.value = savedLocation;
+      if (savedMagnitude) magnitudeThresholdSelect.value = savedMagnitude;
+      if (savedAlertLocations) {
+        alertLocations = JSON.parse(savedAlertLocations);
+        renderLocations();
+      }
+    });
+
+    // Global Earthquake Reports - Fetch real-time data from USGS API
+    const reportsTableBody = document.getElementById('reports-table-body');
+    const btnRefreshReports = document.getElementById('btn-refresh-reports');
+
+    async function loadReports() {
+      reportsTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-yellow-400 font-semibold">Loading reports...</td></tr>';
+      try {
+        // USGS All earthquakes in past day, magnitude 2.5+
+        const response = await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson');
+        const data = await response.json();
+        const features = data.features.slice(0, 15); // Show 15 latest earthquakes
+        if (features.length === 0) {
+          reportsTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-yellow-400 font-semibold">No recent earthquakes reported.</td></tr>';
+          return;
+        }
+        reportsTableBody.innerHTML = '';
+        features.forEach((feature) => {
+          const props = feature.properties;
+          const coords = feature.geometry.coordinates;
+          const date = new Date(props.time);
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-800 cursor-pointer';
+          tr.innerHTML = `
+            <td class="py-3 px-4">${date.toISOString().slice(0, 19).replace('T', ' ')}</td>
+            <td class="py-3 px-4">${props.place}</td>
+            <td class="py-3 px-4 font-bold">${props.mag.toFixed(1)}</td>
+            <td class="py-3 px-4">${coords[2].toFixed(1)}</td>
+            <td class="py-3 px-4">
+              <button class="btn-depth-info bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-semibold rounded px-3 py-1 shadow hover:scale-105 transition" data-depth="${coords[2].toFixed(1)}" data-mag="${props.mag.toFixed(1)}" data-place="${props.place}">
+                View Depth Info
+              </button>
+            </td>
+          `;
+          reportsTableBody.appendChild(tr);
+        });
+        attachDepthInfoButtons();
+      } catch (error) {
+        reportsTableBody.innerHTML = '<tr><td colspan="5" class="text-center py-6 text-red-600 font-semibold">Failed to load reports. Please try again later.</td></tr>';
+      }
+    }
+
+    btnRefreshReports.addEventListener('click', loadReports);
+
+    // Depth Info Modal
+    const depthInfoModal = document.getElementById('depth-info-modal');
+    const depthInfoContent = document.getElementById('depth-info-content');
+    const depthInfoClose = document.getElementById('depth-info-close');
+
+    function attachDepthInfoButtons() {
+      const buttons = document.querySelectorAll('.btn-depth-info');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const depth = btn.getAttribute('data-depth');
+          const mag = btn.getAttribute('data-mag');
+          const place = btn.getAttribute('data-place');
+          depthInfoContent.innerHTML = `
+            <strong>Location:</strong> ${place}<br/>
+            <strong>Magnitude:</strong> ${mag}<br/>
+            <strong>Depth:</strong> ${depth} km<br/><br/>
+            <p>The depth of an earthquake affects the intensity of shaking felt on the surface. Shallow earthquakes (less than 70 km) tend to cause more damage, while deeper ones are felt less intensely.</p>
+          `;
+          depthInfoModal.classList.remove('hidden');
+        });
+      });
+    }
+
+    depthInfoClose.addEventListener('click', () => {
+      depthInfoModal.classList.add('hidden');
+    });
+
+    // Resource Radar - Simulated user-updated info (would be dynamic in real app)
+    const resourceFood = document.getElementById('resource-food');
+    const resourceWater = document.getElementById('resource-water');
+    const resourcePower = document.getElementById('resource-power');
+    const resourceFirstAid = document.getElementById('resource-firstaid');
+    const resourceShelter = document.getElementById('resource-shelter');
+    const btnRefreshResources = document.getElementById('btn-refresh-resources');
+
+    // Sample realistic data for demonstration
+    const sampleResources = {
+      food: [
+        "Community Center - 123 Main St, Cityville",
+        "Local Grocery Store - 45 Market Rd, Townsville",
+        "Food Bank - 789 Elm St, Villageton",
+        "Restaurant Relief Point - 321 Oak Ave, Hamlet",
+        "Mobile Food Truck - Central Park, Cityville"
+      ],
+      water: [
+        "Water Distribution Point - 12 River Rd, Cityville",
+        "Public Fountain - 56 Lake St, Townsville",
+        "Emergency Water Station - 98 Pine St, Villageton",
+        "Community Pool - 77 Maple Ave, Hamlet",
+        "Water Bottling Station - 44 Birch Rd, Cityville"
+      ],
+      power: [
+        "Generator Station - 101 Power Ln, Cityville",
+        "Charging Hub - 22 Battery St, Townsville",
+        "Solar Panel Array - 33 Sun Rd, Villageton",
+        "Emergency Power Tent - 55 Energy Ave, Hamlet",
+        "Mobile Charging Van - Central Square, Cityville"
+      ],
+      firstAid: [
+        "Red Cross Tent - 10 Health St, Cityville",
+        "Hospital Emergency Entrance - 200 Medical Rd, Townsville",
+        "First Aid Station - 15 Care Ave, Villageton",
+        "Mobile Clinic - 5 Relief Rd, Hamlet",
+        "Pharmacy Relief Point - 88 Wellness St, Cityville"
+      ],
+      shelter: [
+        "Community Shelter - 400 Safe St, Cityville",
+        "School Gymnasium - 123 Education Rd, Townsville",
+        "Church Hall - 77 Faith Ave, Villageton",
+        "Emergency Housing - 99 Hope St, Hamlet",
+        "Temporary Shelter Tent - Central Park, Cityville"
+      ]
+    };
+
+    function loadResources() {
+      // Clear current lists
+      resourceFood.innerHTML = '';
+      resourceWater.innerHTML = '';
+      resourcePower.innerHTML = '';
+      resourceFirstAid.innerHTML = '';
+      resourceShelter.innerHTML = '';
+
+      // Populate lists
+      sampleResources.food.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resourceFood.appendChild(li);
+      });
+      sampleResources.water.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resourceWater.appendChild(li);
+      });
+      sampleResources.power.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resourcePower.appendChild(li);
+      });
+      sampleResources.firstAid.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resourceFirstAid.appendChild(li);
+      });
+      sampleResources.shelter.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        resourceShelter.appendChild(li);
+      });
+    }
+
+    btnRefreshResources.addEventListener('click', loadResources);
+
+    // Load initial data for reports and resources on first visit to those sections
+    // (Handled by navigation buttons)
+
+    // Function to detect earthquake near user (simulated)
+    async function detectEarthquakeNearUser() {
+      const userLocation = locationInput.value.trim();
+      if (!userLocation) {
+        alert('Please set your location in Settings to detect nearby earthquakes.');
+        return;
+      }
+      alert('Detecting earthquakes near ' + userLocation + '...');
+      // For demo, fetch earthquakes within last day and filter by proximity (simulated)
+      try {
+        const response = await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson');
+        const data = await response.json();
+        // Simulate proximity by filtering earthquakes with place containing userLocation string (case insensitive)
+        const nearby = data.features.filter(f => f.properties.place.toLowerCase().includes(userLocation.toLowerCase()));
+        if (nearby.length === 0) {
+          alert('No recent earthquakes detected near your location.');
+        } else {
+          alert(`Detected ${nearby.length} earthquake(s) near your location in the past day.`);
+        }
+      } catch {
+        alert('Failed to detect earthquakes near you. Please try again later.');
+      }
+    }
+
+    // Add a floating button for "Detect Earthquake Near Me"
+    const detectNearMeBtn = document.createElement('button');
+    detectNearMeBtn.textContent = 'Detect Earthquake Near Me';
+    detectNearMeBtn.className = 'fixed bottom-6 right-6 bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-full px-5 py-3 shadow-lg hover:scale-105 transition z-50';
+    detectNearMeBtn.setAttribute('aria-label', 'Detect Earthquake Near Me');
+    document.body.appendChild(detectNearMeBtn);
+    detectNearMeBtn.addEventListener('click', detectEarthquakeNearUser);
+
+    // Daily summaries, widgets, and sharing updates (simulated)
+    // For demo, add a share button on home page to share latest earthquake info
+    const homeSection = document.getElementById('section-home');
+    const shareBtn = document.createElement('button');
+    shareBtn.textContent = 'Share Latest Earthquake Update';
+    shareBtn.className = 'mt-6 mx-auto block bg-gradient-to-r from-yellow-400 via-red-600 to-orange-600 text-black font-bold rounded-lg px-6 py-3 shadow-lg hover:scale-105 transition';
+    shareBtn.setAttribute('aria-label', 'Share Latest Earthquake Update');
+    homeSection.appendChild(shareBtn);
+
+    shareBtn.addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
+        const data = await response.json();
+        if (data.features.length === 0) {
+          alert('No recent earthquake updates to share.');
+          return;
+        }
+        const latest = data.features[0].properties;
+        const message = `Latest Earthquake Update:\nLocation: ${latest.place}\nMagnitude: ${latest.mag}\nTime: ${new Date(latest.time).toLocaleString()}\nStay safe with SEIS-ALERT!`;
+        if (navigator.share) {
+          await navigator.share({
+            title: 'SEIS-ALERT Earthquake Update',
+            text: message,
+          });
+        } else {
+          // fallback: copy to clipboard
+          await navigator.clipboard.writeText(message);
+          alert('Update copied to clipboard. Share it with your friends!');
+        }
+      } catch {
+        alert('Failed to fetch latest earthquake update.');
+      }
+    });
+  </script>
+ </body>
+</html>
